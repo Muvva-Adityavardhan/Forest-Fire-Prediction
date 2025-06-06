@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Fire Prediction - Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            position: absolute;
+            width: 100%;
+            z-index: 1;
+            color: red; /* Red text for heading */
+        }
+
+        #map {
+            height: 100vh;
+            width: 100vw;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            transition: opacity 1s ease;
+        }
+
+        #finalize-button {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            z-index: 1;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #finalize-button:hover {
+            background-color: #0056b3;
+        }
+
+        #vpdForm {
+            width: 80%;
+            max-width: 600px;
+            margin: 100px auto;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            position: relative;
+            z-index: 2;
+            display: none;
+        }
+
+        #vpdForm.show {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
+        }
+
+        #vpdForm div {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.5);
+            color: black;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Forest Fire Prediction</h1>
+    <div id="map"></div>
+    <button id="finalize-button">Finalize Location</button>
+    <form id="vpdForm" action="/predict" method="post">
+        <div>
+            <label for="lat">Latitude:</label>
+            <input type="text" id="lat" name="lat" readonly>
+        </div>
+        <div>
+            <label for="lon">Longitude:</label>
+            <input type="text" id="lon" name="lon" readonly>
+        </div>
+        <div>
+            <label for="vpd_avg">Average VPD:</label>
+            <input type="text" id="vpd_avg" name="vpd_avg">
+        </div>
+        <div>
+            <label for="vpd_max">Maximum VPD:</label>
+            <input type="text" id="vpd_max" name="vpd_max">
+        </div>
+        <div>
+            <label for="vpd_min">Minimum VPD:</label>
+            <input type="text" id="vpd_min" name="vpd_min">
+        </div>
+        <div>
+            <label for="vpd_avg_1">Average VPD of Previous Day:</label>
+            <input type="text" id="vpd_avg_1" name="vpd_avg_1">
+        </div>
+        <div>
+            <label for="vpd_max_1">Maximum VPD of Previous Day:</label>
+            <input type="text" id="vpd_max_1" name="vpd_max_1">
+        </div>
+        <div>
+            <label for="vpd_min_1">Minimum VPD of Previous Day:</label>
+            <input type="text" id="vpd_min_1" name="vpd_min_1">
+        </div>
+        <input type="submit" value="Predict">
+    </form>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([23.5937, 78.9629], 5);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var marker;
+
+        map.on('click', function(e) {
+            if (marker) {
+                map.removeLayer(marker);
+            }
+            marker = L.marker(e.latlng).addTo(map);
+            document.getElementById('lat').value = e.latlng.lat.toFixed(6);
+            document.getElementById('lon').value = e.latlng.lng.toFixed(6);
+            document.getElementById('finalize-button').style.display = 'block';
+        });
+
+        document.getElementById('finalize-button').addEventListener('click', function() {
+            map.getContainer().style.opacity = '0.5';
+            document.getElementById('vpdForm').classList.add('show');
+        });
+    </script>
+</body>
+</html>

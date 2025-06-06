@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Fire Prediction - Manual Entry</title>
+    <style>
+        body {
+            background-image: url('/static/image2.jpg'); /* Replace with the path to your local image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            background-blend-mode: overlay;
+            background-color: rgba(0, 0, 0, 0.7); /* Dark overlay for better text visibility */
+        }
+
+        h1 {
+            color: #ff6347;
+            margin-bottom: 40px;
+            font-size: 48px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        form {
+            width: 80%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        form div {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: black;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Forest Fire Prediction</h1>
+        <form action="/predict" method="post">
+            <div>
+                <label for="lat">Latitude:</label>
+                <input type="text" id="lat" name="lat" required>
+            </div>
+            <div>
+                <label for="lon">Longitude:</label>
+                <input type="text" id="lon" name="lon" required>
+            </div>
+            <div>
+                <label for="vpd_avg">Average VPD:</label>
+                <input type="text" id="vpd_avg" name="vpd_avg" required>
+            </div>
+            <div>
+                <label for="vpd_max">Maximum VPD:</label>
+                <input type="text" id="vpd_max" name="vpd_max" required>
+            </div>
+            <div>
+                <label for="vpd_min">Minimum VPD:</label>
+                <input type="text" id="vpd_min" name="vpd_min" required>
+            </div>
+            <div>
+                <label for="vpd_avg_1">Average VPD of Previous Day:</label>
+                <input type="text" id="vpd_avg_1" name="vpd_avg_1" required>
+            </div>
+            <div>
+                <label for="vpd_max_1">Maximum VPD of Previous Day:</label>
+                <input type="text" id="vpd_max_1" name="vpd_max_1" required>
+            </div>
+            <div>
+                <label for="vpd_min_1">Minimum VPD of Previous Day:</label>
+                <input type="text" id="vpd_min_1" name="vpd_min_1" required>
+            </div>
+            <input type="submit" value="Predict">
+        </form>
+    </div>
+</body>
+</html>
