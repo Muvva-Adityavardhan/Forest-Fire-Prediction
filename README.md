@@ -31,3 +31,8 @@ This project aims to predict the likelihood of forest fires by analyzing climati
 ```bash
 git clone https://github.com/your-username/forest-fire-prediction.git
 cd forest-fire-prediction
+
+2. **Install the requirements**
+```bash
+pip install -r requirements.txt
+
