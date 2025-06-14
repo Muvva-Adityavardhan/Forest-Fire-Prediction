@@ -14,6 +14,8 @@ This project aims to predict the likelihood of forest fires by analyzing climati
 
 ---
 
+## 👨‍💻 Contributors
+
 
 ## 📦 Tech Stack
 
