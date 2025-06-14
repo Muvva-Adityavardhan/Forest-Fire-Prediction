@@ -15,7 +15,7 @@ This project aims to predict the likelihood of forest fires by analyzing climati
 ---
 
 ## 👨‍💻 Contributors
-Dheeraj Madugula [https://github.com/Dheerajhacks]
+(Dheeraj Madugula)[https://github.com/Dheerajhacks]
 
 ## 📦 Tech Stack
 
