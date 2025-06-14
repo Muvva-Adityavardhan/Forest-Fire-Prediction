@@ -44,3 +44,32 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
+
+Then open your browser and navigate to: http://127.0.0.1:5000
+- Manually enter VPD and location data
+- View fire prediction results in real-time
+
+
+---
+
+## 📊 Dataset
+The model is trained using data from 2003 to 2021, including:
+- Latitude & Longitude
+- VPD (max, min, avg) of current and previous day
+
+> Note: Data was preprocessed and engineered to improve model accuracy.
+
+
+---
+
+## 🌍 Future Scope
+- Integration with satellite imagery for land cover analysis
+- API-driven weather data input (real-time)
+- Deploy as a cloud-based public tool
+
+---
+
+
+
+## 🔗 Connect with us
+Feel free to reach out or contribute to this project!
